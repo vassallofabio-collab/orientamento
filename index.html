@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quale scuola è più adatta a te?</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #f5f8fa;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #1f3c88;
+    }
+    p.subtitle {
+      text-align: center;
+      color: #555;
+    }
+    .question {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 15px 0;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+    button {
+      background-color: #1f3c88;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      display: block;
+      margin: 25px auto;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #162d66;
+    }
+    #result {
+      background: #e8eefc;
+      border-radius: 10px;
+      padding: 25px;
+      margin-top: 30px;
+      font-size: 1.1em;
+      text-align: center;
+      display: none;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+      animation: fadeIn 0.8s ease;
+    }
+    #shareBtn {
+      background-color: #2ecc71;
+      margin-top: 15px;
+    }
+    #shareBtn:hover {
+      background-color: #27ae60;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .option {
+      margin: 8px 0;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎓 Quale scuola è più adatta a te?</h1>
+  <p class="subtitle">Rispondi alle domande e scopri quale indirizzo si adatta meglio ai tuoi interessi!</p>
+
+  <form id="quizForm">
+    <div class="question">
+      <p>1. Ti piace di più:</p>
+      <label class="option"><input type="radio" name="q1" value="LSA"> Fare esperimenti scientifici o usare il computer per programmare</label>
+      <label class="option"><input type="radio" name="q1" value="RIM"> Studiare lingue e capire come funziona il commercio tra paesi</label>
+      <label class="option"><input type="radio" name="q1" value="AFM"> Capire l’economia, la finanza e il diritto</label>
+      <label class="option"><input type="radio" name="q1" value="TUR"> Viaggiare, conoscere culture e lingue straniere</label>
+      <label class="option"><input type="radio" name="q1" value="CAT"> Disegnare edifici o progettare spazi</label>
+      <label class="option"><input type="radio" name="q1" value="OTT"> Capire come funzionano la vista e gli strumenti ottici</label>
+      <label class="option"><input type="radio" name="q1" value="SAN"> Aiutare le persone e lavorare nel sociale o sanitario</label>
+      <label class="option"><input type="radio" name="q1" value="WEB"> Creare contenuti online e comunicare sul web</label>
+    </div>
+
+    <div class="question">
+      <p>2. Ti interessa di più:</p>
+      <label class="option"><input type="radio" name="q2" value="AFM"> Economia e diritto</label>
+      <label class="option"><input type="radio" name="q2" value="RIM"> Marketing e relazioni internazionali</label>
+      <label class="option"><input type="radio" name="q2" value="TUR"> Geografia e turismo</label>
+      <label class="option"><input type="radio" name="q2" value="LSA"> Scienze, matematica e informatica</label>
+      <label class="option"><input type="radio" name="q2" value="CAT"> Disegno tecnico e topografia</label>
+      <label class="option"><input type="radio" name="q2" value="OTT"> Anatomia e ottica</label>
+      <label class="option"><input type="radio" name="q2" value="SAN"> Psicologia e assistenza alla persona</label>
+      <label class="option"><input type="radio" name="q2" value="WEB"> Comunicazione digitale e social media</label>
+    </div>
+
+    <div class="question">
+      <p>3. Ti vedi meglio:</p>
+      <label class="option"><input type="radio" name="q3" value="LSA"> In un laboratorio o davanti al computer</label>
+      <label class="option"><input type="radio" name="q3" value="RIM"> In un’azienda che lavora con l’estero</label>
+      <label class="option"><input type="radio" name="q3" value="AFM"> In uno studio contabile o nel settore finanziario</label>
+      <label class="option"><input type="radio" name="q3" value="TUR"> In un’agenzia viaggi o albergo</label>
+      <label class="option"><input type="radio" name="q3" value="CAT"> In un cantiere o ufficio tecnico</label>
+      <label class="option"><input type="radio" name="q3" value="OTT"> In un negozio di ottica o laboratorio</label>
+      <label class="option"><input type="radio" name="q3" value="SAN"> In una struttura sanitaria o educativa</label>
+      <label class="option"><input type="radio" name="q3" value="WEB"> In un’agenzia di comunicazione o marketing digitale</label>
+    </div>
+
+    <div class="question">
+      <p>4. Ti consideri una persona più:</p>
+      <label class="option"><input type="radio" name="q4" value="LSA"> Logica e curiosa scientificamente</label>
+      <label class="option"><input type="radio" name="q4" value="RIM"> Aperta alle culture e alle lingue straniere</label>
+      <label class="option"><input type="radio" name="q4" value="AFM"> Precisa e interessata ai numeri e alle regole</label>
+      <label class="option"><input type="radio" name="q4" value="TUR"> Dinamica e socievole</label>
+      <label class="option"><input type="radio" name="q4" value="CAT"> Concreta e amante del disegno tecnico</label>
+      <label class="option"><input type="radio" name="q4" value="OTT"> Attenta ai dettagli e alle persone</label>
+      <label class="option"><input type="radio" name="q4" value="SAN"> Empatica e disponibile ad aiutare</label>
+      <label class="option"><input type="radio" name="q4" value="WEB"> Creativa e comunicativa</label>
+    </div>
+
+    <div class="question">
+      <p>5. La tua materia preferita è:</p>
+      <label class="option"><input type="radio" name="q5" value="LSA"> Scienze o informatica</label>
+      <label class="option"><input type="radio" name="q5" value="RIM"> Lingue straniere</label>
+      <label class="option"><input type="radio" name="q5" value="AFM"> Diritto o economia aziendale</label>
+      <label class="option"><input type="radio" name="q5" value="TUR"> Geografia o storia dell’arte</label>
+      <label class="option"><input type="radio" name="q5" value="CAT"> Disegno tecnico o matematica applicata</label>
+      <label class="option"><input type="radio" name="q5" value="OTT"> Anatomia o fisica</label>
+      <label class="option"><input type="radio" name="q5" value="SAN"> Scienze umane o biologia</label>
+      <label class="option"><input type="radio" name="q5" value="WEB"> Grafica o comunicazione</label>
+    </div>
+
+    <button type="button" onclick="calcolaRisultato()">Scopri il risultato</button>
+  </form>
+
+  <div id="result"></div>
+  <button id="shareBtn" style="display:none;" onclick="condividiRisultato()">📤 Condividi il tuo risultato</button>
+
+  <script>
+    let testoRisultato = "";
+    function calcolaRisultato() {
+      const domande = ["q1","q2","q3","q4","q5"];
+      let conteggio = {};
+      for (let q of domande) {
+        const risposta = document.querySelector(`input[name="${q}"]:checked`);
+        if (!risposta) {
+          alert("Rispondi a tutte le domande!");
+          return;
+        }
+        conteggio[risposta.value] = (conteggio[risposta.value] || 0) + 1;
+      }
+
+      const top = Object.entries(conteggio).sort((a,b)=>b[1]-a[1])[0][0];
+      const descrizioni = {
+        LSA: "🧪 **Liceo Scienze Applicate** – Ami le scienze, la logica e la tecnologia. Ti piace sperimentare e capire come funziona il mondo.",
+        RIM: "💼 **Istituto Tecnico RIM (Relazioni Internazionali per il Marketing)** – Ti interessano le lingue, il commercio e il diritto. Ami comunicare e scoprire nuove culture.",
+        AFM: "📊 **Istituto Tecnico AFM (Amministrazione, Finanza e Marketing)** – Ti appassiona il mondo dell’economia, della finanza e del diritto.",
+        TUR: "🌍 **Istituto Tecnico AFM Turistico** – Sei curioso, dinamico e ami viaggiare. Ti piace lavorare con le persone e conoscere culture diverse.",
+        CAT: "🏗️ **Istituto Tecnico CAT (Geometri)** – Ti piace progettare, disegnare e costruire. Hai una mente pratica e precisa.",
+        OTT: "👓 **Istituto Professionale Ottica** – Ti interessano la vista, la scienza e la cura delle persone. Ami lavori tecnici e di precisione.",
+        SAN: "❤️ **Istituto Professionale Socio Sanitario** – Sei empatico e ti piace aiutare gli altri. Ti interessano salute e benessere.",
+        WEB: "💻 **Istituto Professionale Servizi Commerciali – Web Community Manager** – Sei creativo, digitale e comunicativo. Ti piace creare contenuti e lavorare online."
+      };
+
+      testoRisultato = descrizioni[top];
+      document.getElementById("result").innerHTML = testoRisultato;
+      document.getElementById("result").style.display = "block";
+      document.getElementById("shareBtn").style.display = "block";
+      document.getElementById("result").scrollIntoView({behavior:"smooth"});
+    }
+
+    function condividiRisultato() {
+      navigator.clipboard.writeText("Il mio risultato del test: " + testoRisultato.replace(/<[^>]*>?/gm, ''))
+        .then(()=>alert("✅ Risultato copiato!"))
+        .catch(()=>alert("Errore nella copia del testo."));
+    }
+  </script>
+
+</body>
+</html>
