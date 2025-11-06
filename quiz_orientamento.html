@@ -292,10 +292,10 @@
                             <h2>Cosa ti aspetti dopo il percorso della scuola superiore?</h2>
                             <div class="options">
                                 <button class="option-button blue" onclick="handleChoice('studio', 1)">
-                                    <span>1)</span> Proseguire studi universitari
+                                    <span>1)</span> Proseguire gli studi universitari
                                 </button>
                                 <button class="option-button green" onclick="handleChoice('lavoro', 2)">
-                                    <span>2)</span> Inserimento mercato lavoro
+                                    <span>2)</span> Inserirti nel mercato del lavoro
                                 </button>
                             </div>
                         </div>
@@ -305,7 +305,7 @@
                 case 'studio':
                     content.innerHTML = `
                         <div class="question-container">
-                            <h2>Preferisco studiare...</h2>
+                            <h2>Preferisci studiare...</h2>
                             <div class="options">
                                 <button class="option-button purple" onclick="handleChoice('studio_tech', 'a')">
                                     <span>a)</span> Materie di tipo tecnologico o scientifico
@@ -324,13 +324,13 @@
                 case 'studio_tech':
                     content.innerHTML = `
                         <div class="question-container">
-                            <h2>Da grande mi immagino...</h2>
+                            <h2>Da grande ti immagini...</h2>
                             <div class="options">
                                 <button class="option-button orange" onclick="handleResult('CAT - Costruzione Ambiente e Territorio')">
                                     <span>x)</span> In un cantiere
                                 </button>
                                 <button class="option-button teal" onclick="handleResult('Liceo delle Scienze Applicate')">
-                                    <span>y)</span> In laboratorio chimico o informatico
+                                    <span>y)</span> In un laboratorio chimico o informatico
                                 </button>
                             </div>
                         </div>
@@ -340,7 +340,7 @@
                 case 'studio_lingue':
                     content.innerHTML = `
                         <div class="question-container">
-                            <h2>Mi incuriosisce studiare di più...</h2>
+                            <h2>Ti incuriosisce studiare di più...</h2>
                             <div class="options">
                                 <button class="option-button red" onclick="handleResult('Turistico')">
                                     <span>x)</span> Il russo
@@ -356,7 +356,7 @@
                 case 'studio_economia':
                     content.innerHTML = `
                         <div class="question-container">
-                            <h2>Mi interessa di più occuparmi di impresa...</h2>
+                            <h2>Ti interessa di più occuparmi di impresa...</h2>
                             <div class="options">
                                 <button class="option-button indigo" onclick="handleResult('AFM - Amministrazione Finanza e Marketing')">
                                     <span>x)</span> In Italia
@@ -372,7 +372,7 @@
                 case 'lavoro':
                     content.innerHTML = `
                         <div class="question-container">
-                            <h2>Preferisco occuparmi di...</h2>
+                            <h2>Preferisci occuparti di...</h2>
                             <div class="options">
                                 <button class="option-button blue" onclick="handleChoice('lavoro_economia', 'a')">
                                     <span>a)</span> Economia e marketing
@@ -394,7 +394,7 @@
                 case 'lavoro_economia':
                     content.innerHTML = `
                         <div class="question-container">
-                            <h2>Preferisco occuparmi di...</h2>
+                            <h2>Preferisci occuparti di...</h2>
                             <div class="options">
                                 <button class="option-button violet" onclick="handleResult('AFM - Amministrazione Finanza e Marketing')">
                                     <span>x)</span> Diritto ed economia in Italia
@@ -429,7 +429,7 @@
                 case 'lavoro_sanitarie':
                     content.innerHTML = `
                         <div class="question-container">
-                            <h2>Preferisco occuparmi...</h2>
+                            <h2>Preferisci occuparti...</h2>
                             <div class="options">
                                 <button class="option-button red" onclick="handleResult('Socio Sanitario')">
                                     <span>x)</span> Della salute della persona
