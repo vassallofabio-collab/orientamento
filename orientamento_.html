@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Orientamento Scuola Superiore</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #dbeafe 0%, #fae8ff 50%, #fce7f3 100%);
+            min-height: 100vh;
+            padding: 24px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quiz-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            padding: 48px;
+            margin-bottom: 24px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #6b7280;
+            font-size: 16px;
+        }
+
+        .question-container {
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 24px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-button {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid;
+            border-radius: 8px;
+            text-align: left;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .option-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .option-button span {
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        /* Colori per le diverse opzioni */
+        .blue { background: #eff6ff; border-color: #93c5fd; }
+        .blue:hover { background: #dbeafe; }
+        .blue span { color: #1e3a8a; }
+
+        .green { background: #f0fdf4; border-color: #86efac; }
+        .green:hover { background: #dcfce7; }
+        .green span { color: #14532d; }
+
+        .purple { background: #faf5ff; border-color: #d8b4fe; }
+        .purple:hover { background: #f3e8ff; }
+        .purple span { color: #581c87; }
+
+        .pink { background: #fdf2f8; border-color: #f9a8d4; }
+        .pink:hover { background: #fce7f3; }
+        .pink span { color: #831843; }
+
+        .amber { background: #fffbeb; border-color: #fcd34d; }
+        .amber:hover { background: #fef3c7; }
+        .amber span { color: #78350f; }
+
+        .orange { background: #fff7ed; border-color: #fdba74; }
+        .orange:hover { background: #ffedd5; }
+        .orange span { color: #7c2d12; }
+
+        .teal { background: #f0fdfa; border-color: #5eead4; }
+        .teal:hover { background: #ccfbf1; }
+        .teal span { color: #134e4a; }
+
+        .red { background: #fef2f2; border-color: #fca5a5; }
+        .red:hover { background: #fee2e2; }
+        .red span { color: #7f1d1d; }
+
+        .yellow { background: #fefce8; border-color: #fde047; }
+        .yellow:hover { background: #fef9c3; }
+        .yellow span { color: #713f12; }
+
+        .indigo { background: #eef2ff; border-color: #a5b4fc; }
+        .indigo:hover { background: #e0e7ff; }
+        .indigo span { color: #312e81; }
+
+        .cyan { background: #ecfeff; border-color: #67e8f9; }
+        .cyan:hover { background: #cffafe; }
+        .cyan span { color: #164e63; }
+
+        .violet { background: #f5f3ff; border-color: #c4b5fd; }
+        .violet:hover { background: #ede9fe; }
+        .violet span { color: #5b21b6; }
+
+        .fuchsia { background: #fdf4ff; border-color: #f0abfc; }
+        .fuchsia:hover { background: #fae8ff; }
+        .fuchsia span { color: #701a75; }
+
+        .lime { background: #f7fee7; border-color: #bef264; }
+        .lime:hover { background: #ecfccb; }
+        .lime span { color: #365314; }
+
+        .emerald { background: #ecfdf5; border-color: #6ee7b7; }
+        .emerald:hover { background: #d1fae5; }
+        .emerald span { color: #064e3b; }
+
+        .sky { background: #f0f9ff; border-color: #7dd3fc; }
+        .sky:hover { background: #e0f2fe; }
+        .sky span { color: #0c4a6e; }
+
+        .slate { background: #f8fafc; border-color: #cbd5e1; }
+        .slate:hover { background: #f1f5f9; }
+        .slate span { color: #0f172a; }
+
+        .rose { background: #fff1f2; border-color: #fda4af; }
+        .rose:hover { background: #ffe4e6; }
+        .rose span { color: #881337; }
+
+        .back-button {
+            margin-top: 24px;
+            padding: 12px 24px;
+            background: #e5e7eb;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #d1d5db;
+        }
+
+        .result-container {
+            background: linear-gradient(to right, #f0fdf4, #d1fae5);
+            padding: 48px;
+            border-radius: 12px;
+            border: 2px solid #86efac;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-icon {
+            text-align: center;
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+
+        .result-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #065f46;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .result-box {
+            background: white;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-text {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1f2937;
+            text-align: center;
+        }
+
+        .restart-button {
+            width: 100%;
+            padding: 16px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 24px;
+            transition: background 0.3s ease;
+        }
+
+        .restart-button:hover {
+            background: #1d4ed8;
+        }
+
+        .progress {
+            text-align: center;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="quiz-card">
+            <div class="header">
+                <h1>Quiz Orientamento</h1>
+                <p>Scopri la scuola superiore più adatta a te</p>
+            </div>
+
+            <div id="quiz-content"></div>
+
+            <button id="back-button" class="back-button hidden" onclick="goBack()">
+                ← Torna indietro
+            </button>
+        </div>
+
+        <div class="progress" id="progress">Passo 1 del percorso</div>
+    </div>
+
+    <script>
+        let currentStep = 'start';
+        let history = [];
+        let result = null;
+
+        function renderStep() {
+            const content = document.getElementById('quiz-content');
+            const backButton = document.getElementById('back-button');
+            const progress = document.getElementById('progress');
+
+            // Mostra/nascondi pulsante indietro
+            if (history.length > 0 && currentStep !== 'result') {
+                backButton.classList.remove('hidden');
+            } else {
+                backButton.classList.add('hidden');
+            }
+
+            // Aggiorna progresso
+            progress.textContent = `Passo ${history.length + 1} del percorso`;
+
+            switch (currentStep) {
+                case 'start':
+                    content.innerHTML = `
+                        <div class="question-container">
+                            <h2>Cosa ti aspetti dopo il percorso della scuola superiore?</h2>
+                            <div class="options">
+                                <button class="option-button blue" onclick="handleChoice('studio', 1)">
+                                    <span>1)</span> Proseguire con gli studi universitari
+                                </button>
+                                <button class="option-button green" onclick="handleChoice('lavoro', 2)">
+                                    <span>2)</span> Inserimento nel mercato del lavoro
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                case 'studio':
+                    content.innerHTML = `
+                        <div class="question-container">
+                            <h2>Preferisci studiare...</h2>
+                            <div class="options">
+                                <button class="option-button purple" onclick="handleChoice('studio_tech', 'a')">
+                                    <span>a)</span> Materie di tipo tecnologico o scientifico
+                                </button>
+                                <button class="option-button pink" onclick="handleChoice('studio_lingue', 'b')">
+                                    <span>b)</span> Lingue straniere
+                                </button>
+                                <button class="option-button amber" onclick="handleChoice('studio_economia', 'c')">
+                                    <span>c)</span> Diritto ed economia
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                case 'studio_tech':
+                    content.innerHTML = `
+                        <div class="question-container">
+                            <h2>Da grande ti immagini...</h2>
+                            <div class="options">
+                                <button class="option-button orange" onclick="handleResult('CAT - Costruzione Ambiente e Territorio')">
+                                    <span>x)</span> In un cantiere
+                                </button>
+                                <button class="option-button teal" onclick="handleResult('Liceo delle Scienze Applicate')">
+                                    <span>y)</span> In laboratorio chimico o informatico
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                case 'studio_lingue':
+                    content.innerHTML = `
+                        <div class="question-container">
+                            <h2>Ti incuriosisce studiare di più...</h2>
+                            <div class="options">
+                                <button class="option-button red" onclick="handleResult('Turistico')">
+                                    <span>x)</span> Il russo
+                                </button>
+                                <button class="option-button yellow" onclick="handleResult('RIM - Relazioni Internazionali e Marketing')">
+                                    <span>y)</span> Il tedesco
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                case 'studio_economia':
+                    content.innerHTML = `
+                        <div class="question-container">
+                            <h2>Ti interessa di più occuparti di impresa...</h2>
+                            <div class="options">
+                                <button class="option-button indigo" onclick="handleResult('AFM - Amministrazione Finanza e Marketing')">
+                                    <span>x)</span> In Italia
+                                </button>
+                                <button class="option-button cyan" onclick="handleResult('RIM - Relazioni Internazionali e Marketing')">
+                                    <span>y)</span> All'Estero
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                case 'lavoro':
+                    content.innerHTML = `
+                        <div class="question-container">
+                            <h2>Preferisci occuparti di...</h2>
+                            <div class="options">
+                                <button class="option-button blue" onclick="handleChoice('lavoro_economia', 'a')">
+                                    <span>a)</span> Economia e marketing
+                                </button>
+                                <button class="option-button green" onclick="handleChoice('lavoro_lingue', 'b')">
+                                    <span>b)</span> Lingue straniere
+                                </button>
+                                <button class="option-button rose" onclick="handleChoice('lavoro_sanitarie', 'c')">
+                                    <span>c)</span> Professioni sanitarie
+                                </button>
+                                <button class="option-button slate" onclick="handleResult('CAT - Costruzione Ambiente e Territorio')">
+                                    <span>d)</span> Disegno tecnico
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                case 'lavoro_economia':
+                    content.innerHTML = `
+                        <div class="question-container">
+                            <h2>Preferisci occuparti di...</h2>
+                            <div class="options">
+                                <button class="option-button violet" onclick="handleResult('AFM - Amministrazione Finanza e Marketing')">
+                                    <span>x)</span> Diritto ed economia in ambito nazionale
+                                </button>
+                                <button class="option-button fuchsia" onclick="handleResult('RIM - Relazioni Internazionali e Marketing')">
+                                    <span>y)</span> Diritto ed economia in ambito internazionale
+                                </button>
+                                <button class="option-button lime" onclick="handleResult('Web Community Manager')">
+                                    <span>z)</span> Diritto ed economia in ambito informatico web
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                case 'lavoro_lingue':
+                    content.innerHTML = `
+                        <div class="question-container">
+                            <h2>La lingua che preferisci...</h2>
+                            <div class="options">
+                                <button class="option-button emerald" onclick="handleResult('Turistico')">
+                                    <span>x)</span> Russo
+                                </button>
+                                <button class="option-button sky" onclick="handleResult('RIM - Relazioni Internazionali e Marketing')">
+                                    <span>y)</span> Tedesco
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                case 'lavoro_sanitarie':
+                    content.innerHTML = `
+                        <div class="question-container">
+                            <h2>Preferisci occuparti...</h2>
+                            <div class="options">
+                                <button class="option-button red" onclick="handleResult('Socio Sanitario')">
+                                    <span>x)</span> Della salute della persona
+                                </button>
+                                <button class="option-button blue" onclick="handleResult('Ottico')">
+                                    <span>y)</span> Dei problemi della vista
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                case 'result':
+                    content.innerHTML = `
+                        <div class="result-container">
+                            <div class="result-icon">🎓</div>
+                            <h2 class="result-title">Il tuo percorso ideale!</h2>
+                            <div class="result-box">
+                                <p class="result-text">${result}</p>
+                            </div>
+                            <button class="restart-button" onclick="restart()">
+                                🔄 Ricomincia il quiz
+                            </button>
+                        </div>
+                    `;
+                    backButton.classList.add('hidden');
+                    break;
+            }
+        }
+
+        function handleChoice(nextStep, choice) {
+            history.push({ step: currentStep, choice: choice });
+            currentStep = nextStep;
+            renderStep();
+        }
+
+        function handleResult(school) {
+            result = school;
+            currentStep = 'result';
+            renderStep();
+        }
+
+        function goBack() {
+            if (history.length > 0) {
+                const lastStep = history.pop();
+                currentStep = lastStep.step;
+                result = null;
+                renderStep();
+            }
+        }
+
+        function restart() {
+            currentStep = 'start';
+            history = [];
+            result = null;
+            renderStep();
+        }
+
+        // Inizializza il quiz
+        renderStep();
+    </script>
+</body>
+</html>
