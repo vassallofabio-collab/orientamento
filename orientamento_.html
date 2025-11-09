@@ -36,6 +36,13 @@
             margin-bottom: 48px;
         }
 
+        .logo {
+            max-width: 200px;
+            height: auto;
+            margin: 0 auto 24px;
+            display: block;
+        }
+
         .header h1 {
             font-size: 36px;
             font-weight: bold;
@@ -236,6 +243,29 @@
             background: #1d4ed8;
         }
 
+        .pdf-button {
+            width: 100%;
+            padding: 16px;
+            background: #dc2626;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .pdf-button:hover {
+            background: #b91c1c;
+        }
+
         .progress {
             text-align: center;
             color: #6b7280;
@@ -251,6 +281,7 @@
     <div class="container">
         <div class="quiz-card">
             <div class="header">
+                <img src="logo.png" alt="Logo Scuola" class="logo" id="school-logo">
                 <h1>Quiz Orientamento</h1>
                 <p>Scopri la scuola superiore più adatta a te</p>
             </div>
@@ -269,6 +300,27 @@
         let currentStep = 'start';
         let history = [];
         let result = null;
+        let pdfLink = null;
+
+        // Configurazione: inserisci qui il percorso del tuo logo
+        const LOGO_PATH = 'imglogo/logo.png'; // Modifica questo con il percorso del tuo logo
+
+        // Mappa dei percorsi PDF per ogni risultato
+        const PDF_LINKS = {
+            'CAT - Costruzione Ambiente e Territorio': 'pdf/cat.pdf',
+            'Liceo delle Scienze Applicate': 'pdf/liceo-scienze.pdf',
+            'Turistico': 'pdf/turistico.pdf',
+            'RIM - Relazioni Internazionali e Marketing': 'pdf/rim.pdf',
+            'AFM - Amministrazione Finanza e Marketing': 'pdf/afm.pdf',
+            'Web Community Manager': 'pdf/web-community.pdf',
+            'Socio Sanitario': 'pdf/socio-sanitario.pdf',
+            'Ottico': 'pdf/ottico.pdf'
+        };
+
+        // Imposta il logo all'avvio
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('school-logo').src = LOGO_PATH;
+        });
 
         function renderStep() {
             const content = document.getElementById('quiz-content');
@@ -443,6 +495,12 @@
                     break;
 
                 case 'result':
+                    const pdfButtonHTML = pdfLink ? `
+                        <a href="${pdfLink}" target="_blank" class="pdf-button">
+                            📄 Scarica la brochure informativa (PDF)
+                        </a>
+                    ` : '';
+                    
                     content.innerHTML = `
                         <div class="result-container">
                             <div class="result-icon">🎓</div>
@@ -450,6 +508,7 @@
                             <div class="result-box">
                                 <p class="result-text">${result}</p>
                             </div>
+                            ${pdfButtonHTML}
                             <button class="restart-button" onclick="restart()">
                                 🔄 Ricomincia il quiz
                             </button>
@@ -468,6 +527,7 @@
 
         function handleResult(school) {
             result = school;
+            pdfLink = PDF_LINKS[school] || null;
             currentStep = 'result';
             renderStep();
         }
@@ -485,6 +545,7 @@
             currentStep = 'start';
             history = [];
             result = null;
+            pdfLink = null;
             renderStep();
         }
 
