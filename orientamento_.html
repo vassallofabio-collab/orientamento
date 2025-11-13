@@ -55,6 +55,12 @@
             font-size: 16px;
         }
 
+        h3 {
+            font-size: 15px;
+            color: #1f2937;
+            margin-bottom: 24px;
+        }
+
         .question-container {
             margin-bottom: 24px;
         }
@@ -62,11 +68,6 @@
         h2 {
             font-size: 24px;
             font-weight: bold;
-            color: #1f2937;
-            margin-bottom: 24px;
-        }
-        h3 {
-            font-size: 15px;
             color: #1f2937;
             margin-bottom: 24px;
         }
@@ -374,6 +375,9 @@
                                 <button class="option-button amber" onclick="handleChoice('studio_economia', 'c')">
                                     <span>c)</span> Diritto ed economia
                                 </button>
+                                <button class="option-button rose" onclick="handleChoice('studio_sanitario', 'd')">
+                                    <span>d)</span> Materie in ambito medico-sanitario
+                                </button>
                             </div>
                         </div>
                     `;
@@ -421,6 +425,22 @@
                                 </button>
                                 <button class="option-button cyan" onclick="handleResult('RIM - Relazioni Internazionali e Marketing')">
                                     <span>y)</span> All'Estero
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                case 'studio_sanitario':
+                    content.innerHTML = `
+                        <div class="question-container">
+                            <h2>Preferisci occuparti...</h2>
+                            <div class="options">
+                                <button class="option-button red" onclick="handleResult('Socio Sanitario')">
+                                    <span>x)</span> Del benessere psicofisico della persona (ambito socio sanitario)
+                                </button>
+                                <button class="option-button blue" onclick="handleResult('Ottico')">
+                                    <span>y)</span> Dei problemi della vista (oculistica)
                                 </button>
                             </div>
                         </div>
